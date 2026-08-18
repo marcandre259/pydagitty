@@ -17,6 +17,9 @@ PyDagitty requires Python 3.10 or newer.
 python -m pip install pydagitty
 ```
 
+Development releases are published automatically from `main` after CI passes.
+See [the publishing guide](docs/publishing.md) for versioning and release details.
+
 For development tools:
 
 ```bash

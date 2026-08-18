@@ -8,4 +8,5 @@ build/
 dist/*
 !dist/.gitignore
 *.egg-info/
+src/pydagitty/_version.py
 .venv/
