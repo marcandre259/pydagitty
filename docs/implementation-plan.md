@@ -58,9 +58,11 @@ The following Dagitty R features are useful but are not part of the dependency-f
 | SEM and logistic simulation | `pydagitty.stats` | Requires NumPy-compatible RNG, matrix operations, and tabular output |
 | Local statistical tests | `pydagitty.stats` | Requires a broad statistical stack and data-frame conventions |
 | Coordinates and spring layout | `pydagitty.viz` | Presentation concern and optional numerical dependency |
-| Plotting | `pydagitty.viz` | Presentation concern |
 | Lavaan and external graph adapters | `pydagitty.interop` | Ecosystem-specific conversion concern |
 | Bundled examples | `pydagitty.examples` | Useful after the object API stabilizes |
+
+Static rendering is now available through the optional Graphviz adapter in
+`pydagitty.viz`; coordinate storage and a native spring layout remain deferred.
 
 ### 2.4 Explicit non-goals
 
@@ -597,7 +599,8 @@ It will return immutable four-node records and enforce DAG input, even though th
 | --- | --- |
 | `dagitty`, `as.dagitty` | Replaced by object constructors and path expressions |
 | `convert`, `lavaanToGraph` | Deferred to interoperability adapters |
-| `coordinates`, `graphLayout`, `plot.dagitty` | Deferred to visualization support |
+| `coordinates`, `graphLayout` | Deferred to native layout support |
+| `plot.dagitty` | Replaced by optional `to_graphviz()` static rendering |
 | `getExample` | Deferred until examples can be expressed with the stable object API |
 | `downloadGraph` | Excluded from the core |
 | `impliedCovarianceMatrix` | Deferred to optional statistics support |

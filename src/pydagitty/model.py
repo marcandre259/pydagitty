@@ -22,6 +22,8 @@ from .exceptions import (
 )
 
 if TYPE_CHECKING:
+    import graphviz
+
     from .sem import Tetrad
 
 
@@ -1141,6 +1143,31 @@ class Graph:
         for status, members in self._statuses.items():
             result.set_status(status, members)
         return result
+
+    def to_graphviz(
+        self,
+        *,
+        name: str | None = None,
+        engine: str = "dot",
+        format: str = "svg",
+        graph_attr: Mapping[str, str] | None = None,
+        node_attr: Mapping[str, str] | None = None,
+        edge_attr: Mapping[str, str] | None = None,
+        show_statuses: bool = True,
+    ) -> graphviz.Digraph:
+        """Return an optional Graphviz representation of this graph."""
+        from .viz import to_graphviz
+
+        return to_graphviz(
+            self,
+            name=name,
+            engine=engine,
+            format=format,
+            graph_attr=graph_attr,
+            node_attr=node_attr,
+            edge_attr=edge_attr,
+            show_statuses=show_statuses,
+        )
 
     # Algorithm modules are imported lazily to keep the core model dependency-free.
     def dconnected(

@@ -26,6 +26,14 @@ For development tools:
 python -m pip install -e '.[dev]'
 ```
 
+For graphical output, install the optional Python adapter and the
+[Graphviz system package](https://graphviz.org/download/):
+
+```bash
+python -m pip install 'pydagitty[viz]'
+dot -V
+```
+
 ## Object API
 
 `Node` is an immutable, hashable, case-sensitive identifier. Graphs own node
@@ -141,6 +149,26 @@ PDAG orientation, Markov-equivalent DAG enumeration, implied conditional
 independencies, graphical instrument discovery for linear effects, and
 vanishing tetrads. See [docs/parity.md](docs/parity.md) for graph-family
 preconditions and intentional differences from Dagitty R.
+
+## Visualization
+
+`to_graphviz()` preserves directed, bidirected, undirected, circle-ended, and
+parallel edges. Its result displays as SVG in Jupyter and can render SVG, PNG,
+or PDF files:
+
+```python
+dot = graph.to_graphviz(graph_attr={"rankdir": "LR"})
+dot  # Display in Jupyter.
+
+dot.render("causal-graph", format="svg", cleanup=True)
+```
+
+Exposure, outcome, latent, adjusted, and selected statuses receive composable
+Dagitty-inspired styles. Pass `show_statuses=False` for a neutral graph. The
+returned `graphviz.Digraph` also accepts the normal Graphviz customization,
+layout, `pipe()`, `render()`, and `view()` APIs. Creating DOT source requires
+only the optional Python package; displaying or rendering it requires the
+Graphviz `dot` executable.
 
 ## Graph Support Caveats
 

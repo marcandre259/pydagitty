@@ -31,7 +31,9 @@ Repository = "https://github.com/marcandre259/pydagitty"
 Issues = "https://github.com/marcandre259/pydagitty/issues"
 
 [project.optional-dependencies]
+viz = ["graphviz>=0.20"]
 dev = [
+  "graphviz>=0.20",
   "hypothesis>=6.98",
   "mypy>=1.8",
   "pytest>=7.4",
@@ -68,3 +70,7 @@ select = ["E", "F", "I", "UP"]
 python_version = "3.10"
 strict = true
 packages = ["pydagitty"]
+
+[[tool.mypy.overrides]]
+module = "graphviz"
+ignore_missing_imports = true

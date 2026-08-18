@@ -25,6 +25,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
+      - name: Install Graphviz
+        if: matrix.python-version == '3.12'
+        run: sudo apt-get update && sudo apt-get install --yes graphviz
       - name: Install
         run: python -m pip install -e '.[dev]'
       - name: Test

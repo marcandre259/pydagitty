@@ -202,10 +202,10 @@ change the active traversal.
 | SEM and logistic simulation | `pydagitty.stats` | Deferred; needs RNG, arrays, and tabular conventions |
 | `ciTest`, local tests, result plots | `pydagitty.stats` / `pydagitty.viz` | Deferred; needs a statistical and plotting stack |
 | Coordinates and spring layout | `pydagitty.viz` | Deferred presentation/numerical concern |
-| Plotting | `pydagitty.viz` | Deferred |
+| Static graph rendering | `pydagitty.viz` | Implemented through the optional Graphviz adapter |
 | Lavaan and external graph adapters | `pydagitty.interop` | Deferred ecosystem integration |
 | Bundled `getExample` graphs | `pydagitty.examples` | Deferred until the object API stabilizes |
-| Stable Dagitty/Graphviz serialization | `pydagitty.interop` | Deferred; no initial serializer |
+| Stable Dagitty/Graphviz serialization | `pydagitty.interop` | Deferred; visualization DOT is not a stable interchange format |
 | Browser GUI, publishing, downloading | None | Excluded from the core package |
 | JavaScript/R bridge | None | Excluded; implementation is native Python |
 | NetworkX-backed public graph | None | Excluded; no NetworkX runtime dependency |
