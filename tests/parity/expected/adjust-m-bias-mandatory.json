@@ -1,0 +1,4 @@
+{
+  "without_mandatory": [[]],
+  "with_mandatory_m": [["a", "m"], ["b", "m"]]
+}

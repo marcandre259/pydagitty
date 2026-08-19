@@ -106,8 +106,8 @@ edges. PAG and internal DIGRAPH permit every endpoint pair.
 Insertion checks endpoint compatibility and rejects self-edges. `validate()`
 checks edge compatibility and directed or semi-directed cycles as applicable.
 It does not prove MAG maximality or ancestrality, PAG validity, equivalence
-class validity, or every algorithm-specific theorem premise.
-`validate(strict=True)` raises `NotImplementedError`.
+class validity, or every algorithm-specific theorem premise. The API does not
+advertise theorem-level certification that it cannot provide.
 
 MAG and PAG algorithms must therefore receive caller-certified models.
 Completed-PDAG requirements are checked specifically by `equivalent_dags()`;
@@ -180,6 +180,20 @@ surface:
     module-global random state.
 17. `to_mag()` performs latent projection only and rejects selected nodes
     rather than implicitly performing selection projection.
+18. `orient_pdag()` returns the first deterministic, fully directed compatible
+    DAG extension. Pinned Dagitty's similarly named operation only performs
+    compelled orientations and returns a PDAG.
+19. Canonicalization uses independent latent (`L`) and selection (`S`) name
+    counters. Generated identifiers may therefore differ from pinned Dagitty
+    while the transformed graph remains mathematically equivalent.
+20. Direct-effect adjustment supports `minimal`, `canonical`, and `all` modes;
+    pinned Dagitty restricts direct-effect enumeration to minimal sets.
+21. Adjusted nodes are unavailable as instruments or instrument-conditioning
+    candidates, consistently with their graph-owned mandatory-conditioning
+    role in PyDagitty.
+22. Separation rejects query endpoints that also appear in `given`, making the
+    standard disjoint-set precondition explicit instead of inheriting pinned
+    Dagitty's endpoint-overlap behavior.
 
 ## Enumeration and Complexity
 
@@ -216,10 +230,13 @@ change the active traversal.
 
 ## Parity Testing
 
-Applicable upstream JavaScript and R fixtures should be represented as Python
-object builders and normalized expected results, recording the pinned commit
-and whether each case expects parity or a documented deviation. Such fixtures
-are adaptations under the project license, not represented as verbatim copies.
+Applicable upstream JavaScript and R fixtures are represented under
+`tests/parity/` as Python object builders and normalized expected JSON. The
+machine-checked manifest records source locations, the pinned commit, risk,
+and whether each case expects parity, a documented deviation, or a
+literature-backed result. These fixtures are adaptations under the project
+license, not represented as verbatim copies. CI does not require JavaScript or
+R.
 
 Development checks are:
 

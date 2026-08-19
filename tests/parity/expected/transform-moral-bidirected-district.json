@@ -1,0 +1,5 @@
+{
+  "type": "graph",
+  "nodes": ["a", "b", "x", "z"],
+  "edges": ["a--b", "a--x", "a--z", "b--x", "b--z", "x--z"]
+}

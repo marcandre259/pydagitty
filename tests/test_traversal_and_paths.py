@@ -7,6 +7,7 @@ from pydagitty import (
     PDAG,
     Edge,
     Endpoint,
+    InvalidGraphError,
     Path,
     UnsupportedGraphTypeError,
     connected_components,
@@ -36,6 +37,19 @@ def test_chain_fork_and_collider_separation_rules() -> None:
     assert collider.dconnected(a, c, given=d)
     assert not collider.dconnected((), c)
     assert collider.dseparated((), c)
+
+
+def test_setwise_separation_is_symmetric() -> None:
+    a, b, m, n, y, z = nodes("A B M N Y Z")
+    graph = DAG(paths=[a >> m >> y, b >> n >> z])
+
+    assert graph.dconnected((a, b), (y, z))
+    assert graph.dconnected((y, z), (a, b))
+    assert graph.dseparated((a, b), (y, z), given=(m, n))
+    assert graph.dseparated((y, z), (a, b), given=(m, n))
+
+    with pytest.raises(InvalidGraphError, match="must be disjoint"):
+        graph.dseparated((a, b), (y, z), given=a)
 
 
 def test_statuses_are_not_implicit_conditioning_for_separation() -> None:

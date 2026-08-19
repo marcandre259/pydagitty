@@ -5,8 +5,9 @@ graph algorithms inspired by [Dagitty](https://github.com/jtextor/dagitty).
 It uses typed Python objects rather than Dagitty's graph string language and
 does not require R, JavaScript, NetworkX, or a numerical runtime.
 
-This is a pre-alpha release. DAG functionality is the most mature. MAG, PDAG,
-and especially PAG users should read [the parity and caveat reference](docs/parity.md)
+The `0.1.x` line supports Dagitty-style DAG/ADMG analysis. MAG and PDAG support
+is preview quality, while PAG behavior remains experimental. Mixed-graph users
+should read [the parity and caveat reference](https://github.com/marcandre259/pydagitty/blob/main/docs/parity.md)
 before relying on results.
 
 ## Installation
@@ -17,8 +18,9 @@ PyDagitty requires Python 3.10 or newer.
 python -m pip install pydagitty
 ```
 
-Development releases are published automatically from `main` after CI passes.
-See [the publishing guide](docs/publishing.md) for versioning and release details.
+Stable releases are published from reviewed version tags after CI passes. See
+[the publishing guide](https://github.com/marcandre259/pydagitty/blob/main/docs/publishing.md)
+for versioning and release details.
 
 For development tools:
 
@@ -147,8 +149,12 @@ sample = random_dag(10, p=0.2, rng=random.Random(2026))
 The package also provides canonicalization, moralization, latent projection,
 PDAG orientation, Markov-equivalent DAG enumeration, implied conditional
 independencies, graphical instrument discovery for linear effects, and
-vanishing tetrads. See [docs/parity.md](docs/parity.md) for graph-family
-preconditions and intentional differences from Dagitty R.
+vanishing tetrads. See the
+[parity reference](https://github.com/marcandre259/pydagitty/blob/main/docs/parity.md)
+for graph-family preconditions and intentional differences from Dagitty R.
+The [analyst guides](https://github.com/marcandre259/pydagitty/tree/main/docs/guides)
+and [public API reference](https://github.com/marcandre259/pydagitty/blob/main/docs/api.md)
+cover complete workflows and failure behavior.
 
 ## Visualization
 
@@ -175,8 +181,7 @@ Graphviz `dot` executable.
 - Dagitty's `DAG` terminology permits directed and bidirected edges; this is
   often called an ADMG elsewhere.
 - `validate()` checks endpoint compatibility and cycles. It does not certify
-  MAG maximality/ancestrality, PAG validity, or completed-PDAG validity;
-  `validate(strict=True)` is not implemented.
+  MAG maximality/ancestrality, PAG validity, or completed-PDAG validity.
 - MAG and PAG analyses therefore require caller-certified valid input.
 - PAG d-connection and back-door handling follow the pinned Dagitty behavior
   by replacing circle endpoints with tails. This is not complete PAG
@@ -202,6 +207,11 @@ python -m mypy
 Hypothesis is included in the `dev` extra for property tests. CI runs tests,
 lint, and strict type checking on supported Python versions.
 
+See the
+[0.1.0 technical roadmap](https://github.com/marcandre259/pydagitty/blob/main/docs/roadmap-0.1.0.md)
+for the current correctness, documentation, performance, and release-hardening
+plan.
+
 ## Attribution and License
 
 PyDagitty is informed by and adapts algorithms and behavioral fixtures from
@@ -214,4 +224,5 @@ semantics.
 The Python files are adaptations and reimplementations for this object API;
 they are not claimed to be verbatim translations of upstream files. PyDagitty
 is licensed under the GNU General Public License, version 2 only
-(`GPL-2.0-only`). See [LICENSE](LICENSE).
+(`GPL-2.0-only`). See the
+[license](https://github.com/marcandre259/pydagitty/blob/main/LICENSE).

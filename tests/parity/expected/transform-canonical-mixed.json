@@ -1,0 +1,7 @@
+{
+  "type": "dag",
+  "nodes": ["L1", "L2", "S1", "a", "b", "c", "d"],
+  "edges": ["L1->a", "L1->b", "L2->b", "L2->c", "c->S1", "d->S1"],
+  "latent_nodes": ["L1", "L2"],
+  "selection_nodes": ["S1"]
+}

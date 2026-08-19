@@ -1,0 +1,156 @@
+{
+  "benchmarks": [
+    {
+      "arguments": {
+        "conditioned_nodes_per_query": 3,
+        "edge_probability": 0.06060606060606061,
+        "seed": 2026
+      },
+      "dimensions": {
+        "edges": 279,
+        "nodes": 100,
+        "queries": 25
+      },
+      "elapsed_seconds": 1.051911413029302,
+      "name": "sparse_separation",
+      "result_count": 3,
+      "result_kind": "separated_queries",
+      "truncated": null
+    },
+    {
+      "arguments": {
+        "directed": true,
+        "max_results": 100,
+        "open_only": false
+      },
+      "dimensions": {
+        "edges": 28,
+        "layers": 7,
+        "nodes": 16
+      },
+      "elapsed_seconds": 0.008107476984150708,
+      "name": "paths",
+      "result_count": 100,
+      "result_kind": "paths",
+      "truncated": true
+    },
+    {
+      "arguments": {
+        "max_results": 100
+      },
+      "dimensions": {
+        "edges": 21,
+        "nodes": 16,
+        "parallel_paths": 7
+      },
+      "elapsed_seconds": 0.11170875397510827,
+      "name": "minimal_separators",
+      "result_count": 100,
+      "result_kind": "minimal_separators",
+      "truncated": true
+    },
+    {
+      "arguments": {
+        "effect": "total",
+        "max_results": 100,
+        "mode": "minimal"
+      },
+      "dimensions": {
+        "candidate_nodes": 10,
+        "confounding_paths": 5,
+        "edges": 16,
+        "nodes": 12
+      },
+      "elapsed_seconds": 0.06070519000058994,
+      "name": "adjustment_minimal",
+      "result_count": 32,
+      "result_kind": "adjustment_sets",
+      "truncated": false
+    },
+    {
+      "arguments": {
+        "effect": "total",
+        "max_results": 100,
+        "mode": "all"
+      },
+      "dimensions": {
+        "candidate_nodes": 10,
+        "confounding_paths": 5,
+        "edges": 16,
+        "nodes": 12
+      },
+      "elapsed_seconds": 0.512030792015139,
+      "name": "adjustment_all",
+      "result_count": 100,
+      "result_kind": "adjustment_sets",
+      "truncated": true
+    },
+    {
+      "arguments": {
+        "max_results": 100
+      },
+      "dimensions": {
+        "edges": 10,
+        "nodes": 5,
+        "reversible_edges": 10
+      },
+      "elapsed_seconds": 0.04623902798630297,
+      "name": "equivalent_dags",
+      "result_count": 100,
+      "result_kind": "dags",
+      "truncated": true
+    },
+    {
+      "arguments": {
+        "max_results": null
+      },
+      "dimensions": {
+        "candidate_nodes": 6,
+        "conditioning_candidates": 5,
+        "edges": 12,
+        "nodes": 8
+      },
+      "elapsed_seconds": 0.04372940998291597,
+      "name": "instruments",
+      "result_count": 1,
+      "result_kind": "instruments",
+      "truncated": null
+    },
+    {
+      "arguments": {
+        "kind": "all",
+        "max_results": 100
+      },
+      "dimensions": {
+        "edges": 8,
+        "nodes": 9,
+        "observed_nodes": 8
+      },
+      "elapsed_seconds": 0.006113463023211807,
+      "name": "tetrads",
+      "result_count": 100,
+      "result_kind": "tetrads",
+      "truncated": true
+    }
+  ],
+  "configuration": {
+    "max_results": 100,
+    "scale": 1,
+    "scenarios": [
+      "sparse-separation",
+      "paths",
+      "minimal-separators",
+      "adjustment",
+      "equivalent-dags",
+      "instruments",
+      "tetrads"
+    ],
+    "seed": 2026
+  },
+  "environment": {
+    "platform": "Linux-7.1.8-200.fc44.x86_64-x86_64-with-glibc2.43",
+    "python_implementation": "CPython",
+    "python_version": "3.12.11"
+  },
+  "schema_version": 1
+}

@@ -269,6 +269,16 @@ def test_unconditional_and_conditional_instruments() -> None:
     assert [(item.node, item.given) for item in result] == [(z2, {u})]
 
 
+def test_instruments_require_relevance_and_exclusion() -> None:
+    irrelevant, exposure, outcome = nodes("I X Y")
+    irrelevant_graph = DAG(nodes=[irrelevant], paths=[exposure >> outcome])
+    assert irrelevant_graph.instrumental_variables(exposure=exposure, outcome=outcome) == []
+
+    invalid, exposure2, outcome2 = nodes("Z X2 Y2")
+    exclusion_graph = DAG(paths=[invalid >> exposure2, invalid >> outcome2, exposure2 >> outcome2])
+    assert exclusion_graph.instrumental_variables(exposure=exposure2, outcome=outcome2) == []
+
+
 def test_instruments_exclude_latent_nodes_and_require_single_effect_nodes() -> None:
     z, x, y = nodes("Z X Y")
     graph = DAG(paths=[z >> x, x >> y])
@@ -300,3 +310,19 @@ def test_instruments_reject_adjusted_effect_nodes() -> None:
 
     with pytest.raises(InvalidGraphError):
         graph.instrumental_variables(exposure=exposure, outcome=outcome)
+
+
+def test_instruments_exclude_adjusted_conditioning_candidates() -> None:
+    adjusted, instrument, exposure, outcome = nodes("W I X Y")
+    graph = DAG(
+        paths=[
+            adjusted >> outcome,
+            adjusted >> instrument,
+            instrument >> exposure,
+            exposure >> outcome,
+            exposure @ outcome,
+        ]
+    )
+    graph.adjusted_nodes = adjusted
+
+    assert graph.instrumental_variables(exposure=exposure, outcome=outcome) == []

@@ -1,0 +1,13 @@
+{
+  "structural": {
+    "type": "dag",
+    "nodes": ["A", "L"],
+    "edges": ["L->A"]
+  },
+  "measurement": {
+    "type": "dag",
+    "nodes": ["A", "B", "C", "L"],
+    "edges": ["A->C", "L->B"],
+    "latents": ["A", "L"]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "type": "mag",
+  "nodes": ["v2", "x", "y", "z"],
+  "edges": ["v2->y", "v2<->z", "x->v2", "x->z"],
+  "latents": []
+}

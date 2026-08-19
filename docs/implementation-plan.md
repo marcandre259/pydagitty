@@ -1,6 +1,8 @@
 # PyDagitty Technical Implementation Plan
 
-Status: Implemented pre-alpha; this document remains the parity and hardening roadmap
+Status: Implemented design record
+
+Current execution plan: [PyDagitty 0.1.0 Technical Roadmap](roadmap-0.1.0.md)
 
 Target: Python 3.10+
 
@@ -332,7 +334,7 @@ Validation is split into three levels:
 - GRAPH: undirected edges only.
 - DIGRAPH: permissive internal mixed representation.
 
-Absence of a semi-directed cycle does not prove that a MAG is ancestral and maximal or that a PAG is valid. Dagitty itself marks full MAG and PAG validation as incomplete. MAG/PAG algorithms therefore require caller-certified valid models and document that `validate()` is not such a certificate. Full `validate(strict=True)` support is a post-1.0 candidate, not a stable-core promise. Algorithms enforce locally decidable requirements, such as the absence of undirected MAG/PAG edges for adjustment, but must not claim general graph validity from the weak check.
+Absence of a semi-directed cycle does not prove that a MAG is ancestral and maximal or that a PAG is valid. Dagitty itself marks full MAG and PAG validation as incomplete. MAG/PAG algorithms therefore require caller-certified valid models and document that `validate()` is not such a certificate. Purpose-built theorem-level validators are a post-1.0 candidate and are not advertised by the current API. Algorithms enforce locally decidable requirements, such as the absence of undirected MAG/PAG edges for adjustment, but must not claim general graph validity from the weak check.
 
 ### 4.5 Public algorithm support matrix
 

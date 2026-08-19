@@ -44,7 +44,7 @@ def instrumental_variables(
         raise InvalidGraphError("exposure and outcome must be distinct")
     unavailable = set(graph.latents) | set(graph.selected_nodes) | set(graph.adjusted_nodes)
     if source in unavailable or target in unavailable:
-        raise InvalidGraphError("exposure and outcome cannot be latent or selected")
+        raise InvalidGraphError("exposure and outcome cannot be latent, adjusted, or selected")
 
     canonicalization = graph.canonicalize()
     canonical = canonicalization.graph
@@ -83,6 +83,7 @@ def instrumental_variables(
             and node != instrument
             and node not in forbidden_conditioning
             and node not in fixed
+            and node not in unavailable
         )
         found: tuple[Node, ...] | None = None
         for size in range(len(eligible) + 1):

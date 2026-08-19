@@ -1,0 +1,12 @@
+{
+  "ancestor_graph": {
+    "type": "pdag",
+    "nodes": ["a", "b", "c", "d"],
+    "edges": ["a->c", "b--c", "d->b"]
+  },
+  "moral_graph": {
+    "type": "graph",
+    "nodes": ["a", "b", "c", "d"],
+    "edges": ["a--c", "b--c", "b--d"]
+  }
+}

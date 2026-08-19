@@ -1,0 +1,5 @@
+{
+  "all": [["C", "D"], ["C", "E"]],
+  "mandatory_D": [["C", "D"]],
+  "forbidden_D": [["C", "E"]]
+}

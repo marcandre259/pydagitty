@@ -8,7 +8,7 @@ from __future__ import annotations
 from collections import deque
 from collections.abc import Iterable, Iterator
 
-from .exceptions import UnsupportedGraphTypeError
+from .exceptions import InvalidGraphError, UnsupportedGraphTypeError
 from .model import (
     Edge,
     Endpoint,
@@ -198,8 +198,8 @@ def dconnected(
     targets = graph._resolve_nodes(second)
     conditioned = graph._resolve_nodes(given)
     conditioned_set = set(conditioned)
-    sources = tuple(node for node in sources if node not in conditioned_set)
-    targets = tuple(node for node in targets if node not in conditioned_set)
+    if conditioned_set & (set(sources) | set(targets)):
+        raise InvalidGraphError("separation endpoints and given nodes must be disjoint")
     if not targets:
         return False
     reachable = reachable_nodes(graph, sources, conditioned)

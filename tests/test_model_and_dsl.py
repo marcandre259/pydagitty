@@ -138,6 +138,13 @@ def test_pag_accepts_every_endpoint_combination(left: Endpoint, right: Endpoint)
     assert graph.edges[0].endpoint_at(b) is right
 
 
+def test_validate_does_not_advertise_unimplemented_strict_mode() -> None:
+    graph = DAG()
+
+    with pytest.raises(TypeError, match="strict"):
+        graph.validate(strict=True)  # type: ignore[call-arg]
+
+
 def test_declared_graph_types_enforce_endpoint_compatibility() -> None:
     a, b = nodes("A B")
     directed = Edge(a, b)

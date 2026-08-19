@@ -1,0 +1,8 @@
+{
+  "empty_total": false,
+  "b_direct": false,
+  "Z_total": true,
+  "Z_direct": false,
+  "Z_b_direct": true,
+  "indirect_edges": ["Z->a", "Z->b", "Z->c", "a->b", "b->c"]
+}

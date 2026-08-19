@@ -998,9 +998,8 @@ class Graph:
                         stack.append((other, path + (other,), used_oriented, edge))
         return None
 
-    def validate(self, *, strict: bool = False) -> bool:
-        if strict:
-            raise NotImplementedError("strict theorem-level validation is not implemented")
+    def validate(self) -> bool:
+        """Validate endpoint compatibility and directed or semi-directed cycles."""
         for edge in self._edges:
             if edge.node1 == edge.node2:
                 raise InvalidGraphError("self-edge found")

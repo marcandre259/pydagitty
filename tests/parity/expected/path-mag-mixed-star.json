@@ -1,0 +1,18 @@
+{
+  "a_to_b": [
+    {
+      "nodes": ["a", "x", "b"],
+      "edges": ["a--x", "x->b"],
+      "open": true
+    }
+  ],
+  "c_to_d": [
+    {
+      "nodes": ["c", "x", "d"],
+      "edges": ["c<->x", "d->x"],
+      "open": false,
+      "open_given_x": true
+    }
+  ],
+  "reachable_from_d": ["a", "b", "d", "x"]
+}

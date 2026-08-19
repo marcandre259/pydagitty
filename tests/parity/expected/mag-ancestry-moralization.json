@@ -1,0 +1,12 @@
+{
+  "ancestor_graph": {
+    "type": "mag",
+    "nodes": ["b", "z"],
+    "edges": ["b->z"]
+  },
+  "moral_graph": {
+    "type": "graph",
+    "nodes": ["a", "b", "x", "z"],
+    "edges": ["a--b", "a--x", "a--z", "b--x", "b--z", "x--z"]
+  }
+}
